@@ -1,2 +1,0 @@
-- I am cplusplus,kotlin and python developper.
-- I'm follow my dream through them!
