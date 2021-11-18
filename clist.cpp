@@ -6,12 +6,12 @@ template <typename udef>
 extern class clist
 {
   private:
-    unsigned int lenarr = 0;
+        unsigned int lenarr = 0;
 	udef access_var[8192];
 	udef samplearr[1];
 	bool repor[8192];
   
-    template <typename mytype>
+        template <typename mytype>
 	string as_string(mytype object)
 	{
 	    stringstream QuickAccessWord;
