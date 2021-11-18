@@ -1,17 +1,29 @@
+/*
+I create this data structure to enhance the performance of the C Plus Plus array and make it more efficient.
+you can use clist_guide_viwe() function for know about syntax rules of my data structure.
+also you can use my data structure as libray whether you want with save it under .hpp file extension!
+i invite you to change this data structure and improve its skills than now!
+
+i hope to improve skills of this data structure
+contact dilipishara52@gmail.com or +94704532646 for send suggestion and further information
+thanks for using my "clist class"
+*/
+
+#include <iostream>
 #include <sstream>
 
 using namespace std;
 
 template <typename udef>
-extern class clist
+class clist
 {
   private:
-        unsigned int lenarr = 0;
+    unsigned int lenarr = 0;
 	udef access_var[8192];
 	udef samplearr[1];
 	bool repor[8192];
   
-        template <typename mytype>
+    template <typename mytype>
 	string as_string(mytype object)
 	{
 	    stringstream QuickAccessWord;
@@ -105,11 +117,11 @@ extern class clist
 	    return xyz;
 	}
 		
-	udef *slice(int pos[2])
+	udef *slice(int pointin , int pointout)
 	{
 		udef innerr[1024];
 		int val = 0;
-		for (int i = pos[0]; i < pos[1]; i++)
+		for (int i = pointin; i < pointout; i++)
 		{
 			innerr[val] = access_var[i];
 			val++;
@@ -149,12 +161,10 @@ extern class clist
 			int x = my_array.size() - 1;
 			my_array[x - 1] = 00;
 			my_array[x] = '}';
-			cout << my_array << endl;
 		}
 		else
 		{
-			my_array = "{-Empty-}";
-			cout << my_array << endl;
+			my_array = "{}";
 		}
 		return my_array;
 	}
@@ -253,14 +263,14 @@ extern class clist
 	}
 
 	template <typename undef>
-	void replace(undef subelmntarr[2])
+	void replace(undef word , undef subword)
 	{
 		undef *localarray = access_var;
 		for (int i = 0; i < lenarr; i++)
 		{
-			if (localarray[i] == subelmntarr[0])
+			if (localarray[i] == word[0])
 			{
-				localarray[i] = subelmntarr[1];
+				localarray[i] = subword[1];
 			}
 		}
 		for (int i = 0; i < lenarr; i++)
@@ -474,5 +484,10 @@ extern class clist
 		return access_var;
 	}
 
-}
-//responding range : 2^13 & 2^10
+};
+
+//still developping...
+//add main() for use as normal cpp file
+//responding element range : 2^13 & 2^10
+
+//2020.11.14 @9.37
