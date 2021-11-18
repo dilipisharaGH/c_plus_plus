@@ -1,4 +1,6 @@
 /*
+clist [THE ARRAY HANDLER!]
+
 I create this data structure to enhance the performance of the C Plus Plus array and make it more efficient.
 you can use clist_guide_viwe() function for know about syntax rules of my data structure.
 also you can use my data structure as libray whether you want with save it under .hpp file extension!
@@ -9,6 +11,7 @@ contact dilipishara52@gmail.com or +94704532646 for send suggestion and further 
 thanks for using my "clist class"
 */
 
+#include <iostream>
 #include <sstream>
 
 using namespace std;
@@ -240,25 +243,20 @@ class clist
 		return counter;
 	}
 
-	template <typename subdef>
-	int *find_all(subdef subelmnt)
+	int *find_all(udef subelement)
 	{
-		unsigned int counter = 0;
-		unsigned int pos = 0;
-		unsigned int val = 0;
-		int collect[1024];
-		for (int i = 0; i < lenarr; i++)
+		int var = 0;
+		int collector[lenarr];
+		for (int i = 0 ; i < lenarr ; i++)
 		{
-			if (access_var[i] == subelmnt)
+			if (access_var[i] == subelement)
 			{
-				pos = counter;
-				val++;
-				collect[val] = pos;
+				var++;
+				collector[var] = i;
 			}
-			counter++;
 		}
-		collect[0] = val;
-		return collect;
+		collector[0] = var;
+		return collector;
 	}
 
 	template <typename undef>
@@ -489,4 +487,4 @@ class clist
 //add main() for use as normal cpp file
 //responding element range : 2^13 & 2^10
 
-//2020.11.14 @9.37
+//2020.11.18 @15:10
