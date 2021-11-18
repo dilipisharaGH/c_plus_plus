@@ -254,7 +254,7 @@ extern class clist
 	}
 
 	template <typename undef>
-	void *replace(undef subelmntarr[2])
+	void replace(undef subelmntarr[2])
 	{
 		undef *localarray = access_var;
 		for (int i = 0; i < lenarr; i++)
@@ -270,7 +270,7 @@ extern class clist
 		}
 	}
 
-	void *pop(unsigned int fall_point = 0)
+	void pop(unsigned int fall_point = 0)
 	{
 		if (fall_point < lenarr and fall_point >= 0 and lenarr > 0)
 		{
@@ -295,7 +295,7 @@ extern class clist
 	}
 	
 	template <typename subelement>
-	udef *remove(subelement subword)
+	udef remove(subelement subword)
 	{
 		udef innerr[8192];
 		int total = 0;
@@ -320,7 +320,7 @@ extern class clist
 		lenarr = suber;
 	}
 	template <typename subelement>
-	void *insert(subelement subword, unsigned int fill_point = 0)
+	void insert(subelement subword, unsigned int fill_point = 0)
 	{
 		if (lenarr > 0)
 		{
@@ -377,7 +377,7 @@ extern class clist
 		}
 	}
 	
-	void *reverse()
+	void reverse()
 	{
 		udef innerr[8192];
 		int var = 0;
@@ -393,7 +393,7 @@ extern class clist
 		
 	}
 	
-	void *swap(unsigned int place)
+	void swap(unsigned int place)
 	{
 		udef swaparr[2];
 		if (place == 0)
@@ -416,7 +416,7 @@ extern class clist
 		}
 	}
 	
-	void *spin(bool isforward = true)
+	void spin(bool isforward = true)
 	{
 		udef innerr[8192];
 		if (isforward)
@@ -447,7 +447,7 @@ extern class clist
 		}
 	}
 	
-	void *extend(udef new_array[] ,int lenn)
+	void extend(udef new_array[] ,int lenn)
 	{
 		for (int i = 0 ; i < lenn ; i++)
 		{
@@ -475,104 +475,5 @@ extern class clist
 		return access_var;
 	}
 
-};
-
-int main()
-{
-	
-	clist <string> obj;
-	
-	obj.insert("Hello");
-	obj.insert("Python");
-	obj.insert("Enet");
-	obj.insert("clist");
-	obj.insert("Microsoft",obj.depth());
-	obj.insert("Sunflower_Workstation");
-	obj.insert("Honey_well");
-	obj.set("IBM",1);
-	obj.viwe();
-	obj.sort(true);
-	obj.viwe();
-	obj.sort(false);
-	obj.viwe();
-	
-	/*
-	obj.swap(4);
-	obj.viwe();
-	obj.swap(0);
-	obj.viwe();
-	
-	obj.insert("Hello");
-	obj.viwe();
-	
-	obj.clear();
-	obj.viwe();
-	
-	obj.insert("Python");
-	obj.viwe();
-	obj.insert("Enet");
-	obj.viwe();
-	obj.insert("clist");
-	obj.viwe();
-	obj.insert("Microsoft");
-	obj.viwe();
-	
-	obj.pop(0);
-	obj.viwe();
-	obj.pop(0);
-	obj.viwe();
-
-	obj.insert("Hyphen",0);
-	obj.viwe();
-	obj.insert("Google",0);
-	obj.viwe();
-	obj.insert("C_Plus_Plus",0);
-	obj.viwe();
-	obj.insert("Python",0);
-	obj.viwe();
-	*/
-	cout << "------------------------------------------------------------" << endl;
-	
-	clist <int> myobj;
-	myobj.insert(1024);
-	myobj.insert(128);
-	myobj.insert(2048);
-	myobj.insert(8);
-	myobj.insert(64);
-	myobj.insert(32);
-	myobj.viwe();
-	
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(true);
-	myobj.viwe();
-	myobj.spin(true);
-	myobj.viwe();
-	myobj.spin(true);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	myobj.spin(false);
-	myobj.viwe();
-	cout << "-----------------------------------------------------" << endl;
-	myobj.sort();
-	myobj.viwe();
-	
-	cout << obj.min() << " " << obj.max() << endl;
-	
-	cout << myobj.join(" - ");
-	return 0;
 }
 //responding range : 2^13 & 2^10
