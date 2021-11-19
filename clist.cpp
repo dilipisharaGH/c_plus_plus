@@ -13,6 +13,8 @@ thanks for using my "clist ARRAY HADLER"
 
 #include <sstream>
 
+#ifndef __COMMON_H__
+#define __COMMON_H__
 using namespace std;
 
 template <typename udef>
@@ -476,12 +478,10 @@ class clist
 	}
 
 };
-
+#endif
 
 //still developping...and debugging...
 //responding element range : between 2^13 and 2^10
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.11.19 @18:33
-
-
+//last updated :- 2020.11.19 @21:04
