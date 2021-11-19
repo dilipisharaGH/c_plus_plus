@@ -1,3 +1,9 @@
+/*
+This will present you many useful library function for improve your coding fast.
+many useful functions included with this! these are help you to complete your projects easierly!
+Try with basiq library functions!
+*/
+
 #include <iostream>
 #include <typeinfo>
 #include <clist>
@@ -318,3 +324,6 @@ bool any(bool arr[] ,unsigned int this_len)
 }
 
 #endif
+
+//created :- 2020.10.12 @09:24
+//last update :- 2020.11.19 @22:51
