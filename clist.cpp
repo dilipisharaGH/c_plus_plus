@@ -19,7 +19,7 @@ template <typename udef>
 class clist
 {
   private:
-    unsigned int lenarr = 0;
+    int lenarr = 0;
 	udef access_var[8192];
 	udef samplearr[1];
 	bool repor[8192];
@@ -34,7 +34,7 @@ class clist
 	    return word;  
 	}
 	
-	bool all(bool arr[] ,unsigned int this_len)
+	bool all(bool arr[] ,int this_len)
 	{
 	    for (int i = 0 ; i < this_len ; i++) 
 	    { 
@@ -70,7 +70,7 @@ class clist
 		lenarr = 0;
 	}
 	
-	udef access(unsigned int position)
+	udef access(int position)
 	{
 		if (position <= lenarr)
 		{
@@ -83,7 +83,7 @@ class clist
 	}
 	
 	template <typename format>
-	void set(format element ,unsigned int position)
+	void set(format element ,int position)
 	{
 		if (position <= lenarr)
 		{
@@ -270,7 +270,7 @@ class clist
 		}
 	}
 
-	void pop(unsigned int fall_point = 0)
+	void pop(int fall_point = 0)
 	{
 		if (fall_point < lenarr and fall_point >= 0 and lenarr > 0)
 		{
@@ -320,7 +320,7 @@ class clist
 		lenarr = suber;
 	}
 	template <typename subelement>
-	void insert(subelement subword, unsigned int fill_point = 0)
+	void insert(subelement subword, int fill_point = 0)
 	{
 		if (lenarr > 0)
 		{
@@ -393,7 +393,7 @@ class clist
 		
 	}
 	
-	void swap(unsigned int place)
+	void swap(int place)
 	{
 		udef swaparr[2];
 		if (place == 0)
@@ -477,9 +477,11 @@ class clist
 
 };
 
-//still developping...
-//add main() for use as normal cpp file
-//responding element range : 2^13 & 2^10
 
-//2020.11.18 @15:10
+//still developping...and debugging...
+//responding element range : between 2^13 and 2^10
+
+//created :- 2020.11.18 @15:10
+//last updated :- 2020.11.19 @18:33
+
 
