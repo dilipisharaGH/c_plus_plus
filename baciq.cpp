@@ -1,7 +1,7 @@
 /*
-This will present you many useful library function for improve your coding fast.
-many useful functions included with this! these are help you to complete your projects easierly!
-Try with basiq library functions!
+This will present you many useful library function for fast coding and keep your code short and sweet.
+many useful functions included with this for help you to complete your projects easierly!
+Try with "basiq" library functions!
 */
 
 #include <iostream>
