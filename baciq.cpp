@@ -9,9 +9,6 @@ Try with "basiq" library functions!
 #include <clist>
 #include <sstream>
 
-#ifndef __COMMON_H__
-#define __COMMON_H__
-
 #define $KEY "/uNZIP/"
 
 using namespace std;
@@ -322,8 +319,6 @@ bool any(bool arr[] ,unsigned int this_len)
     }
     return false;
 }
-
-#endif
 
 //created :- 2020.10.12 @09:24
 //last update :- 2020.11.19 @22:51
