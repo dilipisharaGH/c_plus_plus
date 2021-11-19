@@ -261,17 +261,12 @@ class clist
 	template <typename undef>
 	void replace(undef word , undef subword)
 	{
-		undef *localarray = access_var;
 		for (int i = 0; i < lenarr; i++)
 		{
-			if (localarray[i] == word[0])
+			if (access_var[i] == word)
 			{
-				localarray[i] = subword[1];
+				access_var[i] = subword;
 			}
-		}
-		for (int i = 0; i < lenarr; i++)
-		{
-			access_var[i] = localarray[i];
 		}
 	}
 
