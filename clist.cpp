@@ -9,6 +9,7 @@ i invite you to change this data structure and improve its skills than now!
 i hope to improve skills of this data structure
 contact dilipishara52@gmail.com or +94704532646 for send suggestion and further information
 thanks for using my "clist ARRAY HADLER"
+*/
 
 #include <sstream>
 
@@ -486,3 +487,4 @@ class clist
 //responding element range : 2^13 & 2^10
 
 //2020.11.18 @15:10
+
