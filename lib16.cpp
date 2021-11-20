@@ -1,7 +1,7 @@
 /*
 This will present you many useful library function for fast coding and keep your code short and sweet.
 many useful functions included with this for help you to complete your projects easierly!
-Try with "basiq" library functions!
+Try with "lib16" library functions!
 */
 
 #include <iostream>
