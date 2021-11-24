@@ -142,28 +142,29 @@ class clist
 
 			if (typeof == 'N')
 			{
-				for (int i = 0; i < lenarr; i++)
+				for (int i = 0; i < lenarr - 1; i++)
 				{
 					my_array += "\"" + as_string(access_var[i]) + "\"" + " ,";
 				}
+				my_array += "\"" + as_string(access_var[lenarr - 1]) + "\"";
 			}
 			else if (typeof == 'i' or typeof == 'b' or typeof == 'f' or typeof == 'd')
 			{
-				for (int i = 0; i < lenarr; i++)
+				for (int i = 0; i < lenarr - 1; i++)
 				{
 					my_array += as_string(access_var[i]) + " ,";
 				}
+				my_array += as_string(access_var[lenarr - 1]);
 			}
 			else if (typeof == 'c')
 			{
-				for (int i = 0; i < lenarr; i++)
+				for (int i = 0; i < lenarr - 1; i++)
 				{
 					my_array += "\'" + as_string(access_var[i]) + "\'" + " ,";
 				}
+				my_array += "\'" + as_string(access_var[lenarr - 1]) + "\'";
 			}
-			int x = my_array.size() - 1;
-			my_array[x - 1] = 00;
-			my_array[x] = '}';
+			my_array += "}";
 		}
 		else
 		{
@@ -481,7 +482,8 @@ class clist
 #endif
 
 //still developping...and debugging...
-//responding element range : between 2^13 and 2^10
+//responding element range : between 2^10 and 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.11.19 @21:04
+//last updated :- 2020.11.24 @21:45
+
