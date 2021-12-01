@@ -122,6 +122,8 @@ class clist
 		
 	udef *slice(int pointin , int pointout)
 	{
+            if (pointin >= 0 and pointout <= lenarr)
+            {
 		udef innerr[1024];
 		int val = 0;
 		for (int i = pointin; i < pointout; i++)
@@ -130,6 +132,7 @@ class clist
 			val++;
 		}
 		return innerr;
+            }
 	}
 
 	string viwe()
