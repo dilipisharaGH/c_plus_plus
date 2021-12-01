@@ -467,7 +467,7 @@ class clist
 	    for (int i = 0 ; i < totalen ; i++)
 	    {
 	    	beta[i] = min();
-	    	pop(find(min()));
+	    	pop(find(beta[i]));
 	    }
 	    clear();
 	    (not flow)?extend(beta,totalen),reverse():extend(beta,totalen);
