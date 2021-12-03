@@ -6,7 +6,7 @@ this array handler has clear syntax rules, and it easy to use than vectors.
 also you can use my data structure as libray whether you want with save it under the .hpp or .h file extension!
 i invite you to change this data structure and improve its skills than now!
 
-i hope to improve skills of this data structure, and upgrade its perfomance monthly.
+i also hope to improve skills of this data structure and upgrade its perfomance.
 contact dilipishara52@gmail.com or +94704532646 for send suggestion and further information
 thanks for using my "clist ARRAY HADLER"
 */
