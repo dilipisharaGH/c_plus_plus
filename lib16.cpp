@@ -307,4 +307,5 @@ bool any(bool arr[] ,unsigned int this_len)
     return false;
 }
 
-//created :- 2020.10.12 @09:2//last update :- 2020.11.19 @22:5
+//created :- 2020.10.12 @21:20
+//last update :- 2020.12.03 @03:40 as 2nd update
