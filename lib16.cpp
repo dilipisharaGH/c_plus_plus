@@ -33,6 +33,9 @@ int as_int(string object)
     return QuickAccessNumber;
 }
 
+
+
+
 template <typename undefined>
 string type(undefined my_type) 
 {
@@ -202,22 +205,6 @@ int ord(char character)
     return my_char;
 }
 
-int min(int arr[],int this_len)
-{
-    int x;
-    x = arr[0];
-    for (int i = 0; i < this_len ; i++) { if (arr[i] < x) { x = arr[i]; } }
-    return x;
-}
-
-int max(int arr[],int this_len)
-{
-    int x;
-    x = arr[0];
-    for (int i = 0; i < this_len ; i++) { if (arr[i] > x) { x = arr[i]; } }
-    return x;
-}
-
 template <typename typeorder>
 typeorder input (string temp = "")
 {
@@ -320,5 +307,4 @@ bool any(bool arr[] ,unsigned int this_len)
     return false;
 }
 
-//created :- 2020.10.12 @09:24
-//last update :- 2020.11.19 @22:51
+//created :- 2020.10.12 @09:2//last update :- 2020.11.19 @22:5
