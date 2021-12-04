@@ -116,7 +116,7 @@ class clist
 	{
 		if (pointin >= 0 and pointout <= lenarr)
 		{
-			int rangeof = pointout - pointin;
+			//int rangeof = pointout - pointin;
 			for (int i = 0 ; i < 8192 ; i++)
 			{
 				innerr[i] = samplearr[0];
@@ -131,6 +131,10 @@ class clist
 			
 			return innerr;
 		}
+                else
+                {
+                        return samplearr;
+                }
 	}
 
 	string viwe()
