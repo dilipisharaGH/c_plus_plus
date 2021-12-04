@@ -6,7 +6,7 @@ this array handler has clear syntax rules, and it easy to use than vectors.
 also you can use my data structure as libray whether you want with save it under the .hpp or .h file extension!
 i invite you to change this data structure and improve its skills than now!
 
-i also hope to improve skills of this data structure and upgrade its perfomance.
+i hope to improve skills of this data structure, and upgrade its perfomance monthly.
 contact dilipishara52@gmail.com or +94704532646 for send suggestion and further information
 thanks for using my "clist ARRAY HADLER"
 */
@@ -23,8 +23,8 @@ class clist
   private:
     int lenarr = 0;
 	udef access_var[8192];
+	udef innerr[8192];
 	udef samplearr[1];
-	bool repor[8192];
   
     template <typename mytype>
 	string as_string(mytype object)
@@ -46,14 +46,6 @@ class clist
 	    		}
 	    }
 	    return true;
-	}
-	
-	void prive_clear()
-	{
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-			repor[i] = samplearr[0];
-		}
 	}
 
   public:
@@ -122,17 +114,23 @@ class clist
 		
 	udef *slice(int pointin , int pointout)
 	{
-            if (pointin >= 0 and pointout <= lenarr)
-            {
-		udef innerr[1024];
-		int val = 0;
-		for (int i = pointin; i < pointout; i++)
+		if (pointin >= 0 and pointout <= lenarr)
 		{
-			innerr[val] = access_var[i];
-			val++;
+			int rangeof = pointout - pointin;
+			for (int i = 0 ; i < 8192 ; i++)
+			{
+				innerr[i] = samplearr[0];
+			}
+			
+			int val = 0;
+			for (int i = pointin; i < pointout; i++)
+			{
+				innerr[val] = access_var[i];
+				val++;
+			}
+			
+			return innerr;
 		}
-		return innerr;
-            }
 	}
 
 	string viwe()
@@ -203,6 +201,7 @@ class clist
 			}
 			counter++;
 		}
+		return -1;
 	}
 
 	template <typename subdef>
@@ -488,5 +487,6 @@ class clist
 //responding element range : between 2^10 and 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.12.01 @19:52 as 3rd update
+//last updated :- 2020.12.04 @12:22 as 4.5th update
+
 
