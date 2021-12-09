@@ -11,10 +11,11 @@ contact dilipishara52@gmail.com or +94704532646 for send suggestion and further 
 ---(clist ARRAY HADLER)---
 */
 
-#include <sstream>
-
 #ifndef __COMMON_H__
 #define __COMMON_H__
+
+#include <sstream>
+
 using namespace std;
 
 template <typename udef>
@@ -469,14 +470,18 @@ class clist
 	void sort(bool flow = true)
 	{
 	    udef beta[8192];
-	    int totalen = lenarr;
-	    for (int i = 0 ; i < totalen ; i++)
+	    int loclen = lenarr;
+	    for (int i = 0 ; i < loclen ; i++)
 	    {
 	    	beta[i] = min();
 	    	pop(find(beta[i]));
 	    }
-	    clear();
-	    (not flow)?extend(beta,totalen),reverse():extend(beta,totalen);
+	    for (int i = 0 ; i < loclen ; i++)
+	    {
+	    	access_var[i] = beta[i];
+	    	lenarr++;
+	    }
+	    if (not flow){reverse();}
 	}
 	
 	udef *get()
@@ -491,6 +496,6 @@ class clist
 //responding element range : between 2^10 and 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.12.04 @12:22 as 4.5th update
+//last updated :- 2020.12.09 @22:20 as 5th update
 
 
