@@ -252,22 +252,6 @@ class clist
 		return counter;
 	}
 
-	int *find_all(udef subelement)
-	{
-		int var = 0;
-		int collector[lenarr];
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-			if (access_var[i] == subelement)
-			{
-				var++;
-				collector[var] = i;
-			}
-		}
-		collector[0] = var;
-		return collector;
-	}
-
 	template <typename undef>
 	void replace(undef word , undef subword)
 	{
@@ -280,113 +264,84 @@ class clist
 		}
 	}
 
+	int *find_all(udef subelement)
+	{
+		for (int i = 0 ; i < 8192 ; i++)
+		{
+			innerr[i] = samplearr[0];
+		}
+		
+		int var = 0;
+		for (int i = 0 ; i < lenarr ; i++)
+		{
+			if (access_var[i] == subelement)
+			{
+				var++;
+				innerr[var] = i;
+			}
+		}
+		innerr[0] = var;
+		return innerr;
+	}
+	
 	void pop(int fall_point = 0)
 	{
 		if (fall_point < lenarr and fall_point >= 0 and lenarr > 0)
 		{
-			udef innerr[8192];
-			for (int i = 0; i < lenarr; i++)
+			for (int i = fall_point; i < lenarr; i++)
 			{
-				if (fall_point <= i)
-				{
-					innerr[i] = access_var[i + 1];
-				}
-				else
-				{
-					innerr[i] = access_var[i];
-				}
+				access_var[i] = access_var[i + 1];
 			}
-			for (int i = 0; i < lenarr - 1; i++)
-			{
-				access_var[i] = innerr[i];
-			}
+			access_var[lenarr - 1] = samplearr[0];
 			lenarr--;
 		}
 	}
 	
 	template <typename subelement>
-	udef remove(subelement subword)
+	void remove(subelement subword)
 	{
-		udef innerr[8192];
-		int total = 0;
-		int suber = 0;
-		for (int i = 0 ; i < lenarr ; i++)
+		if (lenarr > 0)
 		{
-			if (access_var[i] != subword)
+			int places = 0;
+			for (int i = 0; i < lenarr ; i++)
 			{
-				innerr[suber] = access_var[i];
-				suber++;
+				if (subword == access_var[i]) {places++;}
 			}
-			else {total++;}
+			if (places > 0)
+			{
+				for (int i = 0; i < places ; i++)
+				{
+					pop(find(subword));
+				}
+			}
 		}
-		for (int i = 0 ; i < suber ; i++)
-		{
-			access_var[i] = innerr[i];
-		}
-		for (int i = suber ; i < lenarr ; i++)
-		{
-			access_var[i] = samplearr[0];
-		}
-		lenarr = suber;
 	}
 	template <typename subelement>
 	void insert(subelement subword, int fill_point = 0)
 	{
-		if (lenarr > 0)
+		if (fill_point <= lenarr and fill_point >= 0)
 		{
-			if (fill_point <= lenarr and fill_point >= 0)
+			if (lenarr > 0)
 			{
-				udef innerr[8192];
-				innerr[0] = subword;
-				if (fill_point == 0)
-				{
-					for (int i = 0; i < lenarr; i++)
-					{
-						innerr[i + 1] = access_var[i];
-					}
-				}
-				else if (fill_point < lenarr)
-				{
-					for (int i = 0; i < lenarr; i++)
-					{
-						if (i < fill_point)
-						{
-							innerr[i] = access_var[i];
-						}
-						else if (i == fill_point)
-						{
-							innerr[i] = subword;
-							innerr[i + 1] = access_var[i];
-						}
-						else if (i > fill_point)
-						{
-							innerr[i + 1] = access_var[i];
-						}
-					}
-				}
-				else if (fill_point == lenarr)
-				{
-					for (int i = 0 ; i < lenarr ; i++)
-					{
-						innerr[i] = access_var[i];
-					}
-					innerr[lenarr] = subword;
-				}
+				udef var = access_var[fill_point];
+				udef quack;
 				
-				for (int i = 0; i <= lenarr; i++)
+				access_var[fill_point] = subword;
+				for (int i = fill_point ; i < lenarr ; i++)
 				{
-					access_var[i] = innerr[i];
+					quack = access_var[i+1];
+					access_var[i+1] = var;
+					var = quack;
 				}
-				lenarr++;
 			}
-		}
-		else if (lenarr == 0)
-		{
-			access_var[0] = subword;
+			else if (lenarr == 0)
+			{
+				access_var[0] = subword;
+			}
 			lenarr++;
 		}
 	}
-	
+
 	void reverse()
 	{
 		udef innerr[8192];
@@ -497,5 +452,3 @@ class clist
 
 //created :- 2020.11.18 @15:10
 //last updated :- 2020.12.09 @22:20 as 5th update
-
-
