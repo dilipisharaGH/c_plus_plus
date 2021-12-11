@@ -26,8 +26,16 @@ class clist
 	udef access_var[8192];
 	udef innerr[8192];
 	udef samplearr[1];
+
+        void clear_innerr()
+	{
+		for (int i = 0 ; i < 8192 ; i++)
+		{
+			innerr[i] = samplearr[0];
+		}
+	}
   
-    template <typename mytype>
+        template <typename mytype>
 	string as_string(mytype object)
 	{
 	    stringstream QuickAccessWord;
@@ -266,11 +274,7 @@ class clist
 
 	int *find_all(udef subelement)
 	{
-		for (int i = 0 ; i < 8192 ; i++)
-		{
-			innerr[i] = samplearr[0];
-		}
-		
+		clear_innerr();
 		int var = 0;
 		for (int i = 0 ; i < lenarr ; i++)
 		{
