@@ -448,7 +448,7 @@ class clist
 #endif
 
 //still developping...and debugging...
-//responding element range : between 2^10 and 2^13
+//responding element range : 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.12.09 @22:20 as 5th update
+//last updated :- 2020.12.09 @14:50 as 6th update
