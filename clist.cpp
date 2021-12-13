@@ -26,20 +26,27 @@ template <typename udef>
 class clist
 {
   private:
-        int lenarr = 0;
+    int lenarr = 0;
 	udef access_var[8192];
 	udef innerr[8192];
-	udef samplearr[1];
+	udef bin_var0;
+	udef bin_var1;
+	
+	udef nul()
+	{
+		udef null;
+		return null;
+	}
 
-        void clear_innerr()
+    void clear_innerr()
 	{
 		for (int i = 0 ; i < 8192 ; i++)
 		{
-			innerr[i] = samplearr[0];
+			innerr[i] = nul();
 		}
 	}
   
-        template <typename mytype>
+    template <typename mytype>
 	string as_string(mytype object)
 	{
 	    stringstream QuickAccessWord;
@@ -47,18 +54,6 @@ class clist
 	    string word;
 	    QuickAccessWord >> word;
 	    return word;  
-	}
-	
-	bool all(bool arr[] ,int this_len)
-	{
-	    for (int i = 0 ; i < this_len ; i++) 
-	    { 
-	    	if (arr[i] == false) 
-	    		{
-	    			 return false; 
-	    		}
-	    }
-	    return true;
 	}
 
   public:
@@ -68,25 +63,29 @@ class clist
 		return lenarr;
 	}
 	
-	void clear()
-	{
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-			access_var[i] = samplearr[0];
-		}
-		lenarr = 0;
-	}
-	
 	udef &operator[](int index) 
 	{
+		bin_var0 = bin_var1;
 		if (index < lenarr and index > -1)
 		{
 			return access_var[index];
 		}
-		else
+		udef *nil = &bin_var0;
+		return *nil;
+	}
+	
+	udef *get()
+	{
+		return access_var;
+	}
+	
+	void clear()
+	{
+		for (int i = 0 ; i < lenarr ; i++)
 		{
-			return samplearr[0];
+			access_var[i] = nul();
 		}
+		lenarr = 0;
 	}
 	
 	udef min()
@@ -123,7 +122,7 @@ class clist
 			//int rangeof = pointout - pointin;
 			for (int i = 0 ; i < 8192 ; i++)
 			{
-				innerr[i] = samplearr[0];
+				innerr[i] = nul();
 			}
 			
 			int val = 0;
@@ -135,10 +134,11 @@ class clist
 			
 			return innerr;
 		}
-                else
-                {
-                        return samplearr;
-                }
+        else
+        {
+        	udef nullel[2];
+        	return nullel;
+        }
 	}
 
 	string viwe()
@@ -291,7 +291,7 @@ class clist
 			{
 				access_var[i] = access_var[i + 1];
 			}
-			access_var[lenarr - 1] = samplearr[0];
+			access_var[lenarr - 1] = nul();
 			lenarr--;
 		}
 	}
@@ -461,12 +461,6 @@ class clist
 		innerr[0] = ii;
 		return innerr;
 	} 
-	
-	udef *get()
-	{
-		return access_var;
-	}
-
 };
 
 #endif
@@ -475,4 +469,4 @@ class clist
 //responding element range : 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.12.13 @12:08 as 4th update
+//last updated :- 2020.12.13 @23:53 as 5th update
