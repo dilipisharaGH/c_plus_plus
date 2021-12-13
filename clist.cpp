@@ -29,20 +29,16 @@ class clist
     int lenarr = 0;
 	udef access_var[8192];
 	udef innerr[8192];
+	udef nlarr[1];
 	udef bin_var0;
 	udef bin_var1;
+	udef bin_var2;
 	
-	udef nul()
-	{
-		udef null;
-		return null;
-	}
-
     void clear_innerr()
 	{
 		for (int i = 0 ; i < 8192 ; i++)
 		{
-			innerr[i] = nul();
+			innerr[i] = bin_var2;
 		}
 	}
   
@@ -83,7 +79,7 @@ class clist
 	{
 		for (int i = 0 ; i < lenarr ; i++)
 		{
-			access_var[i] = nul();
+			access_var[i] = bin_var2;
 		}
 		lenarr = 0;
 	}
@@ -122,7 +118,7 @@ class clist
 			//int rangeof = pointout - pointin;
 			for (int i = 0 ; i < 8192 ; i++)
 			{
-				innerr[i] = nul();
+				innerr[i] = bin_var2;
 			}
 			
 			int val = 0;
@@ -136,8 +132,7 @@ class clist
 		}
         else
         {
-        	udef nullel[2];
-        	return nullel;
+        	return nlarr;
         }
 	}
 
@@ -291,7 +286,7 @@ class clist
 			{
 				access_var[i] = access_var[i + 1];
 			}
-			access_var[lenarr - 1] = nul();
+			access_var[lenarr - 1] = bin_var2;
 			lenarr--;
 		}
 	}
@@ -469,4 +464,4 @@ class clist
 //responding element range : 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.12.13 @23:53 as 5th update
+//last updated :- 2020.12.14 @00:24 as 5th update
