@@ -9,8 +9,6 @@ Try with "lib16" library functions!
 #include <clist>
 #include <sstream>
 
-#define $KEY "/uNZIP/"
-
 using namespace std;
 
 template <typename mytype>
