@@ -8,13 +8,17 @@ i invite you to change this data structure and improve its skills than now!
 
 i hope to modify this data structure, and upgrade its perfomance.
 contact dilipishara52@gmail.com or +94704532646 for send suggestion and further information
----(clist ARRAY HADLER)---
+
+refer the original resource from: https://raw.githubusercontent.com/dilipisharaGH/c_plus_plus/main/clist.cpp
+(clist ARRAY HADLER)
 */
 
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
 #include <sstream>
+#include <functional>
+#include <typeinfo>
 
 using namespace std;
 
@@ -22,7 +26,7 @@ template <typename udef>
 class clist
 {
   private:
-    int lenarr = 0;
+        int lenarr = 0;
 	udef access_var[8192];
 	udef innerr[8192];
 	udef samplearr[1];
@@ -443,16 +447,41 @@ class clist
 	    if (not flow){reverse();}
 	}
 	
+	void map(function<udef(udef)> map_func) 
+	{ 
+		for (int i = 0 ; i < lenarr ; i++)
+		{
+	    	access_var[i] = map_func(access_var[i]); 
+		}
+	}
+	
+	udef *filter(function<udef(udef)> filter_func) 
+	{
+		clear_innerr();
+		int ii = 0;
+		for (int i = 0 ; i < lenarr ; i++)
+		{
+	    	if (filter_func(access_var[i]))
+	    	{
+	    		ii++;
+	    		innerr[ii] = access_var[i];
+	    	} 
+		}
+		innerr[0] = ii;
+		return innerr;
+	} 
+	
 	udef *get()
 	{
 		return access_var;
 	}
 
 };
+
 #endif
 
 //still developping...and debugging...
 //responding element range : 2^13
 
 //created :- 2020.11.18 @15:10
-//last updated :- 2020.12.09 @14:50 as 6th update
+//last updated :- 2020.12.13 @12:08 as 4th update
