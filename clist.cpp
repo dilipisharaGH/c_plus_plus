@@ -77,24 +77,15 @@ class clist
 		lenarr = 0;
 	}
 	
-	udef access(int position)
+	udef &operator[](int index) 
 	{
-		if (position <= lenarr)
+		if (index < lenarr and index > -1)
 		{
-			return access_var[position];
+			return access_var[index];
 		}
 		else
 		{
 			return samplearr[0];
-		}
-	}
-	
-	template <typename format>
-	void set(format element ,int position)
-	{
-		if (position <= lenarr)
-		{
-			access_var[position] = element;
 		}
 	}
 	
