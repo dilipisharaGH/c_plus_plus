@@ -214,7 +214,6 @@ class clist
 					T var_0 = local[i+1];
 					local[i+1] = local[i];
 					local[i] = var_0;
-					//cprint(var_0);
 				}
 			}
 			else
