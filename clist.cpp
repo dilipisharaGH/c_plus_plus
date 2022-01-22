@@ -244,6 +244,14 @@ class clist
 			}
 			if (isAscending == false) {reverse();}
 		}
+
+                void map(std::function<T(T)> map_func) 
+		{ 
+			for (int i = 0 ; i < dp ; i++)
+			{
+		    	local[i] = map_func(local[i]); 
+			}
+		}
 			
 		//Initializer
 		template <size_t N>
