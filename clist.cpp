@@ -1,467 +1,266 @@
 /*
 clist [THE ARRAY HANDLER!]
-
-I create this data structure to enhance the performance of the C Plus Plus array and make it more efficient.
-this array handler has clear syntax rules, and it easy to use than vectors.
-also you can use my data structure as libray whether you want with save it under the .hpp or .h file extensions!
-i invite you to change this data structure and improve its skills than now!
-
-i hope to modify this data structure, and upgrade its perfomance.
-contact dilipishara52@gmail.com or +94704532646 for send suggestion and further information
-
+this is one of more easier way to handle arrays in C++
 refer the original resource from: https://raw.githubusercontent.com/dilipisharaGH/c_plus_plus/main/clist.cpp
-(clist ARRAY HADLER)
 */
 
-#ifndef __COMMON_H__
-#define __COMMON_H__
+#pragma ones
 
+#include <iostream>
 #include <sstream>
-#include <functional>
 #include <typeinfo>
 
 using namespace std;
 
-template <typename udef>
+#define cprint(W) (cout << W << endl)
+
+template <typename T>
 class clist
 {
-  private:
-    int lenarr = 0;
-	udef access_var[8192];
-	udef innerr[8192];
-	udef nlarr[1];
-	udef bin_var0;
-	udef bin_var1;
-	udef bin_var2;
+	private:
 	
-    void clear_innerr()
-	{
-		for (int i = 0 ; i < 8192 ; i++)
-		{
-			innerr[i] = bin_var2;
-		}
-	}
-  
-    template <typename mytype>
-	string as_string(mytype object)
-	{
-	    stringstream QuickAccessWord;
-	    QuickAccessWord << object;
-	    string word;
-	    QuickAccessWord >> word;
-	    return word;  
-	}
-
-  public:
-    
-	int depth()
-	{
-		return lenarr;
-	}
-	
-	udef &operator[](int index) 
-	{
-		bin_var0 = bin_var1;
-		if (index < lenarr and index > -1)
-		{
-			return access_var[index];
-		}
-		udef *nil = &bin_var0;
-		return *nil;
-	}
-	
-	udef *get()
-	{
-		return access_var;
-	}
-	
-	void clear()
-	{
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-			access_var[i] = bin_var2;
-		}
-		lenarr = 0;
-	}
-	
-	udef min()
-	{
-	    udef xyz;
-	    xyz = access_var[0];
-	    for (int i = 0; i < lenarr ; i++) 
-	    {
-	    	 if (access_var[i] < xyz) 
-	    	 {
-	    	 	 xyz = access_var[i]; 
-	    	 } 
-	    }
-	    return xyz;
-	}
-	udef max()
-	{
-	    udef xyz;
-	    xyz = access_var[0];
-	    for (int i = 0; i < lenarr ; i++) 
-	    { 
-	    	if (access_var[i] > xyz) 
-	    	{
-	    		 xyz = access_var[i]; 
-	        } 
-	    }
-	    return xyz;
-	}
+		int dp;
+		T *local;
+		T null;
 		
-	udef *slice(int pointin , int pointout)
-	{
-		if (pointin >= 0 and pointout <= lenarr)
+		template <typename mytype>
+		string as_string(mytype object)
 		{
-			//int rangeof = pointout - pointin;
-			for (int i = 0 ; i < 8192 ; i++)
-			{
-				innerr[i] = bin_var2;
-			}
-			
-			int val = 0;
-			for (int i = pointin; i < pointout; i++)
-			{
-				innerr[val] = access_var[i];
-				val++;
-			}
-			
-			return innerr;
+		    stringstream QuickAccessWord;
+		    QuickAccessWord << object;
+		    string word;
+		    QuickAccessWord >> word;
+		    return word;  
 		}
-        else
-        {
-        	return nlarr;
-        }
-	}
-
-	string viwe()
-	{
-		string my_array = "{";
-		if (lenarr > 0)
-		{
-			string typer = typeid(access_var).name();
-			char typeof = typer[6];
-
-			if (typeof == 'N')
-			{
-				for (int i = 0; i < lenarr - 1; i++)
-				{
-					my_array += "\"" + as_string(access_var[i]) + "\"" + " ,";
-				}
-				my_array += "\"" + as_string(access_var[lenarr - 1]) + "\"";
-			}
-			else if (typeof == 'i' or typeof == 'b' or typeof == 'f' or typeof == 'd')
-			{
-				for (int i = 0; i < lenarr - 1; i++)
-				{
-					my_array += as_string(access_var[i]) + " ,";
-				}
-				my_array += as_string(access_var[lenarr - 1]);
-			}
-			else if (typeof == 'c')
-			{
-				for (int i = 0; i < lenarr - 1; i++)
-				{
-					my_array += "\'" + as_string(access_var[i]) + "\'" + " ,";
-				}
-				my_array += "\'" + as_string(access_var[lenarr - 1]) + "\'";
-			}
-			my_array += "}";
-		}
-		else
-		{
-			my_array = "{}";
-		}
-		return my_array;
-	}
+	public:
 	
-	string join(string joiner)
-	{
-	    string word = "NULL";
-	    if (lenarr > 0)
-	    {
-		    word = "";
-		    for (int i = 0 ; i < lenarr - 1 ; i++)
+		//Read Only Section
+		int depth(){return dp;}
+		
+		void viwe()
+		{
+			string my_array;
+			if (dp > 0)
+			{
+				my_array = "{";
+				string typer = typeid(local).name();
+				char typeof = typer[1];
+	
+				if (typeof == 'N') {for (int i = 0; i < dp - 1; i++){my_array += "\"" + as_string(local[i]) + "\"" + " ,";}my_array += "\"" + as_string(local[dp - 1]) + "\"";}
+				else if (typeof == 'i' or typeof == 'b' or typeof == 'f' or typeof == 'd'){for (int i = 0; i < dp - 1; i++){my_array += as_string(local[i]) + " ,";}my_array += as_string(local[dp - 1]);}
+				else if (typeof == 'c'){for (int i = 0; i < dp - 1; i++){my_array += "\'" + as_string(local[i]) + "\'" + " ,";}my_array += "\'" + as_string(local[dp - 1]) + "\'";}
+				else {my_array += "error";}
+				my_array += "}";
+			}
+			else
+			{
+				my_array = "{}";
+			}
+			cprint(my_array);
+		}
+		
+		T min()
+		{
+		    T xyz;
+		    xyz = local[0];
+		    for (int i = 0; i < dp ; i++) 
 		    {
-		        word += as_string(access_var[i]) + joiner;
+		    	 if (local[i] < xyz) 
+		    	 {
+		    	 	 xyz = local[i]; 
+		    	 } 
 		    }
-		    word += as_string(access_var[lenarr - 1]);
-	    }
-	    return word;
-	}
-
-	template <typename subdef>
-	int find(subdef subelmnt)
-	{
-		int counter = 0;
-		for (int i = 0; i < lenarr; i++)
-		{
-			if (access_var[i] == subelmnt)
-			{
-				return counter;
-			}
-			counter++;
+		    return xyz;
 		}
-		return -1;
-	}
-
-	template <typename subdef>
-	int rfind(subdef subelmnt)
-	{
-		int counter = 0;
-		int pos = 0;
-		for (int i = 0; i < lenarr; i++)
+		T max()
 		{
-			if (access_var[i] == subelmnt)
-			{
-				pos = counter;
-			}
-			counter++;
+		    T xyz;
+		    xyz = local[0];
+		    for (int i = 0; i < dp ; i++) 
+		    { 
+		    	if (local[i] > xyz) 
+		    	{
+		    		 xyz = local[i]; 
+		        } 
+		    }
+		    return xyz;
 		}
-		return pos;
-	}
-
-	template <typename subdef>
-	int check(subdef subelmnt)
-	{
-		for (int i = 0; i < lenarr; i++)
+		
+		int find(T E)
 		{
-			if (access_var[i] == subelmnt)
+			int counter = 0;
+			for (int i = 0; i < dp; i++)
 			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	template <typename subdef>
-	int count(subdef subelmnt)
-	{
-		int counter = 0;
-		for (int i = 0; i < lenarr; i++)
-		{
-			if (access_var[i] == subelmnt)
-			{
+				if (local[i] == E)
+				{
+					return counter;
+				}
 				counter++;
 			}
+			return -1;
 		}
-		return counter;
-	}
-
-	template <typename undef>
-	void replace(undef word , undef subword)
-	{
-		for (int i = 0; i < lenarr; i++)
-		{
-			if (access_var[i] == word)
-			{
-				access_var[i] = subword;
-			}
-		}
-	}
-
-	int *find_all(udef subelement)
-	{
-		clear_innerr();
-		int var = 0;
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-			if (access_var[i] == subelement)
-			{
-				var++;
-				innerr[var] = i;
-			}
-		}
-		innerr[0] = var;
-		return innerr;
-	}
 	
-	void pop(int fall_point = 0)
-	{
-		if (fall_point < lenarr and fall_point >= 0 and lenarr > 0)
+		int rfind(T E)
 		{
-			for (int i = fall_point; i < lenarr; i++)
+			int counter = 0;
+			int pos = 0;
+			for (int i = 0; i < dp; i++)
 			{
-				access_var[i] = access_var[i + 1];
-			}
-			access_var[lenarr - 1] = bin_var2;
-			lenarr--;
-		}
-	}
-	
-	template <typename subelement>
-	void remove(subelement subword)
-	{
-		if (lenarr > 0)
-		{
-			int places = 0;
-			for (int i = 0; i < lenarr ; i++)
-			{
-				if (subword == access_var[i]) {places++;}
-			}
-			if (places > 0)
-			{
-				for (int i = 0; i < places ; i++)
+				if (local[i] == E)
 				{
-					pop(find(subword));
+					pos = counter;
 				}
+				counter++;
 			}
-		}
-	}
-	template <typename subelement>
-	void insert(subelement subword, int fill_point = 0)
-	{
-		if (fill_point <= lenarr and fill_point >= 0)
-		{
-			if (lenarr > 0)
-			{
-				udef var = access_var[fill_point];
-				udef quack;
-				
-				access_var[fill_point] = subword;
-				for (int i = fill_point ; i < lenarr ; i++)
-				{
-					quack = access_var[i+1];
-					access_var[i+1] = var;
-					var = quack;
-				}
-			}
-			else if (lenarr == 0)
-			{
-				access_var[0] = subword;
-			}
-			lenarr++;
-		}
-	}
-
-	void reverse()
-	{
-		udef innerr[8192];
-		int var = 0;
-		for (int i = lenarr-1 ; i >= 0 ; i--)
-		{
-			innerr[var] = access_var[i];
-			var++;
-		}
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-			access_var[i] = innerr[i];
+			return pos;
 		}
 		
-	}
-	
-	void swap(int place)
-	{
-		udef swaparr[2];
-		if (place == 0)
+		int check(T E)
 		{
-			//store section
-			swaparr[0] = access_var[0];
-			swaparr[1] = access_var[lenarr-1];
-			//swap section
-			access_var[lenarr-1] = swaparr[0];
-			access_var[0] = swaparr[1];
-		}
-		else
-		{
-			//store section
-			swaparr[0] = access_var[place];
-			swaparr[1] = access_var[place-1];
-			//swap section
-			access_var[place-1] = swaparr[0];
-			access_var[place] = swaparr[1];
-		}
-	}
-	
-	void spin(bool isforward = true)
-	{
-		udef innerr[8192];
-		if (isforward)
-		{
-			innerr[0] = access_var[lenarr-1];
-			for (int i = 0 ; i < lenarr-1 ; i++)
+			for (int i = 0; i < dp; i++)
 			{
-				innerr[i+1] = access_var[i];
+				if (local[i] == E)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	
+		int count(T E)
+		{
+			int counter = 0;
+			for (int i = 0; i < dp; i++)
+			{
+				if (local[i] == E)
+				{
+					counter++;
+				}
+			}
+			return counter;
+		}
+		
+		
+		//Writing Section
+		T &operator[](int index) 
+		{
+			return local[index];
+		}
+		
+		void clear()
+		{
+			for (int i = 0 ; i < dp ; i++)
+			{
+				local[i] = null;
+			}
+		}
+		
+		void replace(T W , T E)
+		{
+			for (int i = 0; i < dp; i++)
+			{
+				if (local[i] == W)
+				{
+					local[i] = E;
+				}
+			}
+		}
+		
+		void reverse() //warning
+		{
+			for (int i = 0 ; i < dp/2 ; i++)
+			{
+				int stnd = (dp-1)-i;
+				T var_0 = local[stnd];
+				local[stnd] = local[i];
+				local[i] = var_0; 
+			}
+		}
+		
+		template <size_t ln>
+		void copyto(T (&copi)[ln])
+		{
+			for (int i = 0 ; i < ln ; i++)
+			{
+				copi[i] = local[i];
+			}
+		}
+		
+		void swap(int place)
+		{
+			T swaparr[2];
+			if (place == 0)
+			{
+				//store
+				swaparr[0] = local[0];
+				swaparr[1] = local[dp-1];
+				//swap
+				local[dp-1] = swaparr[0];
+				local[0] = swaparr[1];
+			}
+			else
+			{
+				//store
+				swaparr[0] = local[place];
+				swaparr[1] = local[place-1];
+				//swap
+				local[place-1] = swaparr[0];
+				local[place] = swaparr[1];
+			}
+		}
+		
+		void spin(bool isforward = true)
+		{
+			if (isforward == true)
+			{
+				for (int i = dp-2; i > -1; i--)
+				{
+					T var_0 = local[i+1];
+					local[i+1] = local[i];
+					local[i] = var_0;
+					//cprint(var_0);
+				}
+			}
+			else
+			{
+				for (int i = 1; i < dp; i++)
+				{
+					T var_0 = local[i-1];
+					local[i-1] = local[i];
+					local[i] = var_0;
+				}
 			}
 			
-			for (int i = 0 ; i < lenarr ; i++)
-			{
-				access_var[i] = innerr[i];
-			}
 		}
-		else
+		
+		//bubble sort algorithm
+		void sort(bool isAscending = true)
 		{
-			for (int i = 0 ; i < lenarr-1 ; i++)
-			{
-				innerr[i] = access_var[i+1];
-			}
-			innerr[lenarr-1] = access_var[0];
-			
-			for (int i = 0 ; i < lenarr ; i++)
-			{
-				access_var[i] = innerr[i];
-			}
-		}
-	}
-	
-	void extend(udef new_array[] ,int lenn)
-	{
-		for (int i = 0 ; i < lenn ; i++)
-		{
-			int ava = lenarr + i;
-			access_var[ava] = new_array[i];
-		}
-		lenarr += lenn;
-	}
-	
-	void sort(bool flow = true)
-	{
-	    udef beta[8192];
-	    int loclen = lenarr;
-	    for (int i = 0 ; i < loclen ; i++)
-	    {
-	    	beta[i] = min();
-	    	pop(find(beta[i]));
-	    }
-	    for (int i = 0 ; i < loclen ; i++)
-	    {
-	    	access_var[i] = beta[i];
-	    	lenarr++;
-	    }
-	    if (not flow){reverse();}
-	}
-	
-	void map(function<udef(udef)> map_func) 
-	{ 
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-	    	access_var[i] = map_func(access_var[i]); 
-		}
-	}
-	
-	udef *filter(function<udef(udef)> filter_func) 
-	{
-		clear_innerr();
-		int ii = 0;
-		for (int i = 0 ; i < lenarr ; i++)
-		{
-	    	if (filter_func(access_var[i]))
+			for (int j = 1 ; j < dp ; j++)
 	    	{
-	    		ii++;
-	    		innerr[ii] = access_var[i];
-	    	} 
+	   	 	int n = 0;
+			    for (int i = 1 ; i < dp ; i++)
+			    {
+			        if (local[i-1] > local[i]) { swap(i); n++; }
+			    }
+			    if (n == 0) {break;}
+			    n = 0;
+			}
+			if (isAscending == false) {reverse();}
 		}
-		innerr[0] = ii;
-		return innerr;
-	} 
+			
+		//Initializer
+		template <size_t N>
+		clist(T (&drive)[N])
+		{
+			local = drive;
+			dp = N;
+		}
 };
 
-#endif
-
 //still developping...and debugging...
-//responding element range : 2^13
+//responding element range : user define
+//total methods			: 15
 
-//created :- 2020.11.18 @15:10
-//last updated :- 2020.12.14 @00:24 as 5th update
+//created :- 2021.11.18 @15:10
+//last updated :- 2022.01.22 @11:09 as 6th update
