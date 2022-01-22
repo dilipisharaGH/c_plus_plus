@@ -1,18 +1,14 @@
 /*
 clist [THE ARRAY HANDLER!]
-this is one of more easier way to handle arrays in C++
+this is one of more easier way to handle arrays in C++ lang.
 refer the original resource from: https://raw.githubusercontent.com/dilipisharaGH/c_plus_plus/main/clist.cpp
 */
 
-#pragma ones
+#pragma once
 
 #include <iostream>
 #include <sstream>
-#include <typeinfo>
-
-using namespace std;
-
-#define cprint(W) (cout << W << endl)
+#define cprint(W) (std::cout << W << std::endl)
 
 template <typename T>
 class clist
@@ -24,11 +20,11 @@ class clist
 		T null;
 		
 		template <typename mytype>
-		string as_string(mytype object)
+		std::string as_string(mytype object)
 		{
-		    stringstream QuickAccessWord;
+		    std::stringstream QuickAccessWord;
 		    QuickAccessWord << object;
-		    string word;
+		    std::string word;
 		    QuickAccessWord >> word;
 		    return word;  
 		}
@@ -39,11 +35,11 @@ class clist
 		
 		void viwe()
 		{
-			string my_array;
+			std::string my_array;
 			if (dp > 0)
 			{
 				my_array = "{";
-				string typer = typeid(local).name();
+				std::string typer = typeid(local).name();
 				char typeof = typer[1];
 	
 				if (typeof == 'N') {for (int i = 0; i < dp - 1; i++){my_array += "\"" + as_string(local[i]) + "\"" + " ,";}my_array += "\"" + as_string(local[dp - 1]) + "\"";}
