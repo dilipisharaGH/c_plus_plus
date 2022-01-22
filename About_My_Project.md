@@ -1,2 +1,2 @@
 # c_plus_plus
-to release Libraries and useful projects for c++
+to release Headers Files and Useful Projects for C++
