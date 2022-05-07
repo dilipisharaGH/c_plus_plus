@@ -1,6 +1,7 @@
 //Ant(8) will have found the Sugar_cube(2); :)
-/*The structured maze sloving progrmme*/
-#pragma ones
+/*The Structured access maze sloving progrmme*/
+#ifndef _TAP_STRUCTURED_
+#define _TAP_STRUCTURED_
 
 #include <iostream>
 #include <vector>
@@ -146,8 +147,6 @@ class stepBase
 		std::cout << std::endl;
 	}
 
-
-  public:
 	//Movements drivings...
 	void move(char direction)
 	{
@@ -185,25 +184,27 @@ class stepBase
 		}
 	}
 	
+	public:
+	
 	//initializing...
-	stepBase(int (&grid)[YY][XX])
+	stepBase(int (&grid)[YY][XX] ,int px ,int py)
 	{
 		rown = YY;
 		coln = XX;
+		
 		for (int y = 0; y < rown; y++)
 		{
 			for (int x = 0; x < coln; x++)
 			{
-				if (grid[y][x] == std_player)
-				{
-					native_loc[0] = y;
-					native_loc[1] = x;
-					xcd = x;
-					ycd = y;
-				}
 				mazeb[y][x] = grid[y][x];
 			}
 		}
+		
+		native_loc[0] = py;
+		ycd = py;
+		native_loc[1] = px;
+		xcd = px;
+		mazeb[py][px] = std_player;
 	}
 };
 
@@ -427,7 +428,7 @@ int main()
 {
 	int maze[27][27] = {
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0},
-		{0, 8, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,0},
+		{0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,0},
 		{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,0},
 		{0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,0 ,0 ,0 ,1 ,1 ,1 ,1 ,0},
 		{0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1 ,1 ,1 ,1 ,1 ,0 ,0 ,1 ,0},
@@ -454,14 +455,14 @@ int main()
 		{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1 ,1 ,1 ,1 ,1 ,1 ,1 ,0 ,0},
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0},
 	};
-	Ant <27 ,27> A(maze);
+	Ant <27 ,27> A(maze ,1 ,1);
+	//std::cout << sizeof(A) << std::endl;
 	A.autoRun();
 	
-	//std::cout << sizeof(A) << std::endl;
 	return 0;
 }
 
-//UpNext: selective function!
-//UpNext: loop breaker
-//UpNext: route predictor and analyzer
+#endif
 
+//UpNext: shortest route predictor and analyzer
+//Upnext: routes optimizer
