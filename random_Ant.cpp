@@ -1,6 +1,7 @@
 //Ant(8) will have found the Sugar_cube(2); :)
 /*The Random access maze sloving progrmme*/
-#pragma ones
+#ifndef _TAP_RANDOMED_
+#define _TAP_RANDOMED_
 
 #include <iostream>
 #include <vector>
@@ -146,8 +147,6 @@ class stepBase
 		std::cout << std::endl;
 	}
 
-
-  public:
 	//Movements drivings...
 	void move(char direction)
 	{
@@ -185,31 +184,33 @@ class stepBase
 		}
 	}
 	
+	public:
+	
 	//initializing...
-	stepBase(int (&grid)[YY][XX])
+	stepBase(int (&grid)[YY][XX] ,int px ,int py)
 	{
 		rown = YY;
 		coln = XX;
+		
 		for (int y = 0; y < rown; y++)
 		{
 			for (int x = 0; x < coln; x++)
 			{
-				if (grid[y][x] == std_player)
-				{
-					native_loc[0] = y;
-					native_loc[1] = x;
-					xcd = x;
-					ycd = y;
-				}
 				mazeb[y][x] = grid[y][x];
 			}
 		}
+		
+		native_loc[0] = py;
+		ycd = py;
+		native_loc[1] = px;
+		xcd = px;
+		mazeb[py][px] = std_player;
 	}
 };
 
 //Actions data regulation
 template <size_t YY, size_t XX>
-class Ract : public stepBase <YY ,XX>
+class Stract : public stepBase <YY ,XX>
 {
 	/*REPORTS*/
 	// @  = won report
@@ -403,9 +404,9 @@ class Ract : public stepBase <YY ,XX>
 
 //co-ordination between thinking and running
 template <size_t YY, size_t XX>
-class Ant : public Ract <YY ,XX>
+class Ant : public Stract <YY ,XX>
 {
-  using Ract<YY ,XX>::Ract;
+  using Stract<YY ,XX>::Stract;
   public:
 	void autoRun()
 	{
@@ -444,7 +445,7 @@ int main()
 {
 	int maze[27][27] = {
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0},
-		{0, 8, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,0},
+		{0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,0},
 		{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,0},
 		{0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,0 ,0 ,0 ,1 ,1 ,1 ,1 ,0},
 		{0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1 ,1 ,1 ,1 ,1 ,0 ,0 ,1 ,0},
@@ -471,14 +472,15 @@ int main()
 		{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1 ,1 ,1 ,1 ,1 ,1 ,1 ,0 ,0},
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0},
 	};
-	Ant <27 ,27> A(maze);
+	Ant <27 ,27> A(maze ,1 ,1);
+	//std::cout << sizeof(A) << std::endl;
 	A.autoRun();
 	
-	//std::cout << sizeof(A) << std::endl;
 	return 0;
 }
+
+#endif
 
 //UpNext: selective function!
 //UpNext: loop breaker
 //UpNext: route predictor and analyzer
-
